@@ -9,6 +9,7 @@ import "./Vote.css";
 export default function Vote() {
   let { poll_id } = useParams();
   const [poll, setPoll] = useState();
+  const [isVoted, setIsVoted] = useState(false);
 
   useEffect(() => {
     const longPolling = setInterval(() => {
@@ -23,7 +24,7 @@ export default function Vote() {
   }, [poll_id]);
 
   function handleVote(business_id) {
-    console.log("VOTING! ");
+    setIsVoted(true);
     votePoll(poll.poll_id, business_id);
   }
 
@@ -55,6 +56,16 @@ export default function Vote() {
                   />
                   <div class="card-body">
                     <h5 class="card-title">{business.name}</h5>
+                    <address>
+                      {business.address.map((addressPart, addressPartIndex) => (
+                        <>
+                          {addressPart}
+                          {addressPartIndex < business.address.length - 1 && (
+                            <br />
+                          )}
+                        </>
+                      ))}
+                    </address>
                     <p class="card-text">{business.categories}</p>
                     <a
                       href={business.url}
@@ -69,6 +80,7 @@ export default function Vote() {
                       type="button"
                       className="btn btn-info mx-1"
                       onClick={() => handleVote(business.id)}
+                      disabled={isVoted}
                     >
                       Vote
                     </button>
