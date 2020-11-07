@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
@@ -11,7 +11,7 @@ export default function Navbar() {
   return (
     <nav id="navbar" className="navbar navbar-expand-lg navbar-light bg-light ">
       <div className="container narrow-container">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           WeFood
         </a>
         <button

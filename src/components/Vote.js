@@ -20,7 +20,7 @@ export default function Vote() {
     return () => {
       clearInterval(longPolling);
     };
-  }, []);
+  }, [poll_id]);
 
   function handleVote(business_id) {
     console.log("VOTING! ");
@@ -73,6 +73,7 @@ export default function Vote() {
                       <img
                         src={business.image_url}
                         className="img-fluid img-short"
+                        alt={business.name}
                       />
                     </td>
                     <td className="text-center">{business.votes}</td>
