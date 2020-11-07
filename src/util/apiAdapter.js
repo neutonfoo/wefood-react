@@ -4,7 +4,8 @@ export function createPoll(
   cuisine,
   cuisineQuery,
   priceRangeIndex,
-  numberOfResults
+  numberOfResults,
+  isUsingCurrentLocation
 ) {
   return fetch("/api/poll", {
     method: "POST",
@@ -19,6 +20,7 @@ export function createPoll(
       cuisine_query: cuisineQuery,
       price_range_index: priceRangeIndex,
       number_of_results: numberOfResults,
+      is_using_current_location: isUsingCurrentLocation,
     }),
   })
     .then(response => {
@@ -73,6 +75,20 @@ export function getPolls() {
 
 export function getCuisines() {
   return fetch("/api/cuisine", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(error => console.log(error));
+}
+
+export function getBusinessReviews(business_id) {
+  return fetch(`/api/review/${business_id}`, {
     method: "GET",
     headers: {
       Accept: "application/json",

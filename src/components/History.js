@@ -38,19 +38,22 @@ export default function History() {
             </tr>
           </thead>
           <tbody>
-            {polls.map(([poll_id, poll]) => (
-              <tr key={poll_id}>
-                <td>{poll.date}</td>
-                <td>{poll.businesses.reduce((a, b) => a + b.votes, 0)}</td>
-                <td>{poll.term}</td>
-                <td>{poll.location}</td>
-                <td>
-                  {poll.businesses.sort((a, b) => b.votes - a.votes)[0].name} (
-                  {poll.businesses.sort((a, b) => b.votes - a.votes)[0].votes}{" "}
-                  Votes)
-                </td>
-              </tr>
-            ))}
+            {polls
+              .filter(([poll_id, poll]) => poll.businesses.length > 0)
+              .map(([poll_id, poll]) => (
+                <tr key={poll_id}>
+                  <td>{poll.date}</td>
+                  <td>{poll.businesses.reduce((a, b) => a + b.votes, 0)}</td>
+                  <td>{poll.cuisine}</td>
+                  <td>{poll.location}</td>
+                  <td>
+                    {poll.businesses.sort((a, b) => b.votes - a.votes)[0].name}{" "}
+                    (
+                    {poll.businesses.sort((a, b) => b.votes - a.votes)[0].votes}{" "}
+                    Votes)
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       )}

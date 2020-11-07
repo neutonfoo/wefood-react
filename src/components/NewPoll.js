@@ -13,6 +13,7 @@ export default function NewPoll() {
 
   const [pollPrompt, setPollPrompt] = useState("");
   const [location, setLocation] = useState("");
+  const [isUsingCurrentLocation, setIsUsingCurrentLocation] = useState(false);
   const [numberOfResults, setNumberOfResults] = useState(5);
 
   const [selectedCuisine, setSelectedCuisine] = useState("");
@@ -26,17 +27,22 @@ export default function NewPoll() {
       setCuisines(response);
       setIsLoadingCuisines(false);
     });
-
-    // Get location
-    // if ("geolocation" in navigator) {
-    //   navigator.geolocation.getCurrentPosition(function (position) {
-    //     console.log("Latitude is :", position.coords.latitude);
-    //     console.log("Longitude is :", position.coords.longitude);
-    //   });
-    // } else {
-    //   console.log("Not Available");
-    // }
   }, []);
+
+  useEffect(() => {
+    if (isUsingCurrentLocation) {
+      // Get location
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          setLocation(
+            `${position.coords.latitude},${position.coords.longitude}`
+          );
+        });
+      } else {
+        console.log("Not Available");
+      }
+    }
+  }, [isUsingCurrentLocation]);
 
   useEffect(() => {
     if (cuisines.length > 0) {
@@ -47,6 +53,10 @@ export default function NewPoll() {
 
   function handlePollPromptInput(e) {
     setPollPrompt(e.target.value);
+  }
+
+  function handleCurrentLocationSwitch(e) {
+    setIsUsingCurrentLocation(e.target.checked);
   }
 
   function handleLocationInput(e) {
@@ -76,7 +86,8 @@ export default function NewPoll() {
       selectedCuisine,
       selectedCuisineQuery,
       selectedPriceRangeIndex,
-      numberOfResults
+      numberOfResults,
+      isUsingCurrentLocation
     ).then(res => {
       const poll_id = res.poll_id;
       history.push(`/vote/${poll_id}`);
@@ -102,12 +113,28 @@ export default function NewPoll() {
         </div>
         <div className="form-group text-center">
           <h5>Location</h5>
+          <div className="custom-control custom-switch">
+            <input
+              type="checkbox"
+              className="custom-control-input"
+              id="useCurrentLocationSwitch"
+              onChange={e => handleCurrentLocationSwitch(e)}
+            />
+            <label
+              className="custom-control-label mb-1"
+              htmlFor="useCurrentLocationSwitch"
+            >
+              Use current location
+            </label>
+          </div>
+
           <input
             type="text"
             className="form-control"
             placeholder="Location"
             value={location}
             onChange={e => handleLocationInput(e)}
+            disabled={isUsingCurrentLocation}
           />
         </div>
         <div className="form-group text-center">
@@ -137,7 +164,7 @@ export default function NewPoll() {
               <button
                 key={priceRange}
                 type="button"
-                className={`btn btn-dark ${
+                className={`btn btn-secondary ${
                   selectedPriceRangeIndex === priceRangeIndex ? "active" : ""
                 }`}
                 onClick={() => handlePriceRangeClick(priceRangeIndex)}
@@ -147,7 +174,10 @@ export default function NewPoll() {
             ))}
           </div>
           <div className="form-group text-center my-2">
-            <h5>Number of Results</h5>
+            <h5>
+              Number of Results{" "}
+              <span className="badge badge-warning">{numberOfResults}</span>
+            </h5>
             <input
               type="range"
               className="custom-range"
