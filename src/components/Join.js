@@ -6,10 +6,12 @@ import { getPoll } from "../util/apiAdapter";
 export default function Join() {
   const history = useHistory();
 
+  const [error, setError] = useState();
   const [pollId, setPollId] = useState("");
 
   function handlePollIdChange(event) {
     const newPollId = event.target.value;
+
     if (isNaN(newPollId)) {
       // Not a number
     } else {
@@ -20,9 +22,14 @@ export default function Join() {
   function handleJoinPoll(e) {
     e.preventDefault();
 
+    if (pollId === "") {
+      setError("No Poll ID entered.");
+      return;
+    }
+
     getPoll(pollId).then(poll => {
       if (poll.error) {
-        console.log("Poll does not exist.");
+        setError(poll.error);
       } else {
         history.push(`/vote/${poll.poll_id}`);
       }
@@ -35,6 +42,11 @@ export default function Join() {
 
   return (
     <>
+      {error && (
+        <div className="alert alert-danger my-2" role="alert">
+          Error: {error}
+        </div>
+      )}
       <h1 className="text-center">Join Poll</h1>
       <p className="text-center">Enter a Poll ID below to join a poll.</p>
       <form
@@ -50,7 +62,7 @@ export default function Join() {
             onChange={e => handlePollIdChange(e)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-info">
           Join
         </button>
       </form>

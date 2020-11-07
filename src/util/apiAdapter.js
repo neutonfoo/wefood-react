@@ -47,6 +47,20 @@ export function votePoll(poll_id, business_id) {
     .catch(error => console.log(error));
 }
 
+export function getPolls() {
+  return fetch(`/api/poll`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(error => console.log(error));
+}
+
 export function getCuisines() {
   return fetch("/api/cuisine", {
     method: "GET",

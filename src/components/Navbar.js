@@ -11,9 +11,9 @@ export default function Navbar() {
   return (
     <nav id="navbar" className="navbar navbar-expand-lg navbar-light bg-light ">
       <div className="container narrow-container">
-        <a className="navbar-brand" href="/">
+        <Link to="/" className="navbar-brand">
           WeFood
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"

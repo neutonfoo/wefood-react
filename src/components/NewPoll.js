@@ -91,7 +91,7 @@ export default function NewPoll() {
                 <button
                   key={cuisineIndex}
                   type="button"
-                  className={`btn btn-secondary ${
+                  className={`btn btn-info ${
                     selectedCuisineQuery === cuisineQuery ? "active" : ""
                   }`}
                   value={cuisineQuery}
@@ -109,7 +109,7 @@ export default function NewPoll() {
               <button
                 key={priceRange}
                 type="button"
-                className={`btn btn-secondary ${
+                className={`btn btn-dark ${
                   selectedPriceRange === priceRange ? "active" : ""
                 }`}
                 onClick={() => handlePriceRangeClick(priceRange)}
@@ -130,7 +130,7 @@ export default function NewPoll() {
             />
           </div>
           <div className="form-group text-center my-2">
-            <button type="submit" className="btn btn-info">
+            <button type="submit" className="btn btn-danger">
               Create Poll
             </button>
           </div>

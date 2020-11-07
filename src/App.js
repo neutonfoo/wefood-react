@@ -4,9 +4,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
 import Navbar from "./components/Navbar";
+
 import NewPoll from "./components/NewPoll";
 import Join from "./components/Join";
 import Vote from "./components/Vote";
+import History from "./components/History";
 
 function App() {
   return (
@@ -25,6 +27,9 @@ function App() {
             </Route>
             <Route path="/vote/:poll_id" exact>
               <Vote />
+            </Route>
+            <Route path="/history" exact>
+              <History />
             </Route>
           </Switch>
         </div>
