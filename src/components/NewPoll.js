@@ -11,10 +11,14 @@ export default function NewPoll() {
   const [isLoadingCuisines, setIsLoadingCuisines] = useState(true);
   const [cuisines, setCuisines] = useState([]);
 
+  const [pollPrompt, setPollPrompt] = useState("");
   const [location, setLocation] = useState("");
   const [numberOfResults, setNumberOfResults] = useState(5);
+
+  const [selectedCuisine, setSelectedCuisine] = useState("");
   const [selectedCuisineQuery, setSelectedCuisineQuery] = useState("");
-  const [selectedPriceRange, setSelectedPriceRange] = useState("$");
+
+  const [selectedPriceRangeIndex, setSelectedPriceRangeIndex] = useState(0);
 
   useEffect(() => {
     // Get list of cuisines
@@ -36,30 +40,44 @@ export default function NewPoll() {
 
   useEffect(() => {
     if (cuisines.length > 0) {
+      setSelectedCuisine(cuisines[0].cuisine);
       setSelectedCuisineQuery(cuisines[0].cuisineQuery);
     }
   }, [cuisines]);
 
+  function handlePollPromptInput(e) {
+    setPollPrompt(e.target.value);
+  }
+
   function handleLocationInput(e) {
     setLocation(e.target.value);
   }
+
   function handleNumberOfResultsChange(e) {
     setNumberOfResults(e.target.value);
   }
 
-  function handleSelectedCuisineQuery(cuisineQuery) {
+  function handleCuisineQuery(cuisine, cuisineQuery) {
+    setSelectedCuisine(cuisine);
     setSelectedCuisineQuery(cuisineQuery);
   }
 
   function handlePriceRangeClick(priceRange) {
-    setSelectedPriceRange(priceRange);
+    setSelectedPriceRangeIndex(priceRange);
   }
 
   function handleCreatePoll(e) {
     e.preventDefault();
 
-    // createPoll(selectedCuisineQuery, location).then(res => {
-    createPoll(selectedCuisineQuery, location, numberOfResults).then(res => {
+    // createPoll(cuisineQuery, location).then(res => {
+    createPoll(
+      pollPrompt,
+      location,
+      selectedCuisine,
+      selectedCuisineQuery,
+      selectedPriceRangeIndex,
+      numberOfResults
+    ).then(res => {
       const poll_id = res.poll_id;
       history.push(`/vote/${poll_id}`);
     });
@@ -72,6 +90,16 @@ export default function NewPoll() {
         Select the options below to create a new Poll.
       </p>
       <form onSubmit={e => handleCreatePoll(e)}>
+        <div className="form-group text-center">
+          <h5>Poll Prompt</h5>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Poll Prompt"
+            value={pollPrompt}
+            onChange={e => handlePollPromptInput(e)}
+          />
+        </div>
         <div className="form-group text-center">
           <h5>Location</h5>
           <input
@@ -87,15 +115,15 @@ export default function NewPoll() {
           <div className="btn-group-vertical d-flex" role="group">
             {isLoadingCuisines && <div>Loading...</div>}
             {!isLoadingCuisines &&
-              cuisines.map(({ cuisine, cuisineQuery }, cuisineIndex) => (
+              cuisines.map(({ cuisine, cuisineQuery }) => (
                 <button
-                  key={cuisineIndex}
+                  key={cuisineQuery}
                   type="button"
                   className={`btn btn-info ${
                     selectedCuisineQuery === cuisineQuery ? "active" : ""
                   }`}
                   value={cuisineQuery}
-                  onClick={() => handleSelectedCuisineQuery(cuisineQuery)}
+                  onClick={() => handleCuisineQuery(cuisine, cuisineQuery)}
                 >
                   {cuisine}
                 </button>
@@ -105,14 +133,14 @@ export default function NewPoll() {
         <div className="form-group text-center">
           <h5>Price Range</h5>
           <div className="btn-group d-flex" role="group">
-            {priceRanges.map(priceRange => (
+            {priceRanges.map((priceRange, priceRangeIndex) => (
               <button
                 key={priceRange}
                 type="button"
                 className={`btn btn-dark ${
-                  selectedPriceRange === priceRange ? "active" : ""
+                  selectedPriceRangeIndex === priceRangeIndex ? "active" : ""
                 }`}
-                onClick={() => handlePriceRangeClick(priceRange)}
+                onClick={() => handlePriceRangeClick(priceRangeIndex)}
               >
                 {priceRange}
               </button>

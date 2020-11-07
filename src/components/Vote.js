@@ -32,64 +32,53 @@ export default function Vote() {
       {!poll && <p>Loading</p>}
       {poll && (
         <>
-          <h1 className="text-center">
-            Voting in Poll{" "}
+          <h1 className="text-center">{poll.poll_prompt}</h1>
+          <h2 className="text-center">
             <span className="badge badge-success">{poll.poll_id}</span>
-          </h1>
+          </h2>
           <h5 className="text-center">
-            Cuisine <span className="badge badge-warning">{poll.term}</span>
+            Cuisine <span className="badge badge-warning">{poll.cuisine}</span>
           </h5>
           <h5 className="text-center">
             Location{" "}
             <span className="badge badge-primary">{poll.location}</span>
           </h5>
-          <table className="table table-bordered">
-            <thead className="thead-dark">
-              <tr>
-                <th className="text-center" scope="col">
-                  Position
-                </th>
-                <th className="text-center" scope="col">
-                  Location
-                </th>
-                <th className="text-center" scope="col">
-                  Votes
-                </th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {poll.businesses
-                .sort((a, b) => b.votes - a.votes)
-                .map((business, businessIndex) => (
-                  <tr key={business.id}>
-                    <td className="text-center">
-                      <span className="badge badge-info">
-                        <h3>{businessIndex + 1}</h3>
-                      </span>
-                    </td>
-                    <td className="text-center">
-                      <h3>{business.name}</h3>
-                      <img
-                        src={business.image_url}
-                        className="img-fluid img-short"
-                        alt={business.name}
-                      />
-                    </td>
-                    <td className="text-center">{business.votes}</td>
-                    <td className="text-center">
-                      <button
-                        type="button"
-                        className="btn btn-secondary"
-                        onClick={() => handleVote(business.id)}
-                      >
-                        Vote
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+          <div>
+            {poll.businesses
+              .sort((a, b) => b.votes - a.votes)
+              .map((business, businessIndex) => (
+                <div key={business.id} class="card business-card my-2 mx-auto">
+                  <img
+                    class="card-img-top"
+                    src={business.image_url}
+                    alt={business.name}
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title">{business.name}</h5>
+                    <p class="card-text">{business.categories}</p>
+                    <a
+                      href={business.url}
+                      class="btn btn-danger"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <i class="fab fa-yelp"></i> Yelp
+                    </a>
+
+                    <button
+                      type="button"
+                      className="btn btn-info mx-1"
+                      onClick={() => handleVote(business.id)}
+                    >
+                      Vote
+                    </button>
+                    <span>
+                      {business.votes} Vote{business.votes === 1 ? "" : "s"}
+                    </span>
+                  </div>
+                </div>
+              ))}
+          </div>
         </>
       )}
     </>

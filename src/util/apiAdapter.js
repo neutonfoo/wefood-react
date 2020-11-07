@@ -1,4 +1,11 @@
-export function createPoll(term, location, numberOfResults) {
+export function createPoll(
+  pollPrompt,
+  location,
+  cuisine,
+  cuisineQuery,
+  priceRangeIndex,
+  numberOfResults
+) {
   return fetch("/api/poll", {
     method: "POST",
     headers: {
@@ -6,9 +13,12 @@ export function createPoll(term, location, numberOfResults) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      term: term,
+      poll_prompt: pollPrompt,
       location: location,
-      numberOfResults: numberOfResults,
+      cuisine: cuisine,
+      cuisine_query: cuisineQuery,
+      price_range_index: priceRangeIndex,
+      number_of_results: numberOfResults,
     }),
   })
     .then(response => {

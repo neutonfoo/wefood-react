@@ -1,8 +1,24 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
-  const [activeNav, setActiveNav] = useState("NewPoll");
+  let location = useLocation();
+
+  const [activeNav, setActiveNav] = useState();
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setActiveNav("NewPoll");
+    } else if (location.pathname === "/history") {
+      setActiveNav("History");
+    } else if (location.pathname === "/credits") {
+      setActiveNav("Credits");
+    } else if (location.pathname === "/join") {
+      setActiveNav("Join");
+    } else if (location.pathname.startsWith("/vote")) {
+      setActiveNav("Join");
+    }
+  }, [location.pathname]);
 
   function handleNavLinkClick(newActiveNav) {
     setActiveNav(newActiveNav);
@@ -57,6 +73,17 @@ export default function Navbar() {
                 onClick={() => handleNavLinkClick("History")}
               >
                 History
+              </Link>
+            </li>
+            <li
+              className={`nav-item ${activeNav === "Credits" ? "active" : ""}`}
+            >
+              <Link
+                className="nav-link"
+                to="/credits"
+                onClick={() => handleNavLinkClick("Credits")}
+              >
+                Credits
               </Link>
             </li>
           </ul>

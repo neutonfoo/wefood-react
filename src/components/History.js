@@ -7,7 +7,6 @@ export default function History() {
 
   useEffect(() => {
     getPolls().then(response => {
-      console.log(response);
       setPolls(response);
     });
   }, []);
@@ -16,29 +15,30 @@ export default function History() {
     <>
       <h1 className="text-center">History</h1>
       <p className="text-center">Past polls and their winners.</p>
-      <table className="table table-bordered">
-        <thead className="thead-dark">
-          <tr>
-            <th className="text-center" scope="col">
-              Date
-            </th>
-            <th className="text-center" scope="col">
-              Total Votes
-            </th>
-            <th className="text-center" scope="col">
-              Cuisine
-            </th>
-            <th className="text-center" scope="col">
-              Location
-            </th>
-            <th className="text-center" scope="col">
-              Winner <small>(# Votes)</small>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {polls.length > 0 &&
-            polls.map(([poll_id, poll]) => (
+      {polls.length === 0 && <p>No polls yet.</p>}
+      {polls.length > 0 && (
+        <table className="table table-bordered">
+          <thead className="thead-dark">
+            <tr>
+              <th className="text-center" scope="col">
+                Date
+              </th>
+              <th className="text-center" scope="col">
+                Total Votes
+              </th>
+              <th className="text-center" scope="col">
+                Cuisine
+              </th>
+              <th className="text-center" scope="col">
+                Location
+              </th>
+              <th className="text-center" scope="col">
+                Winner <small>(# Votes)</small>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {polls.map(([poll_id, poll]) => (
               <tr key={poll_id}>
                 <td>{poll.date}</td>
                 <td>{poll.businesses.reduce((a, b) => a + b.votes, 0)}</td>
@@ -51,8 +51,9 @@ export default function History() {
                 </td>
               </tr>
             ))}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      )}
     </>
   );
 }
