@@ -171,7 +171,7 @@ export default function Vote() {
                       <>
                         Total Reviews: {viewingBusinessReviews.total}
                         {viewingBusinessReviews.reviews.map(review => (
-                          <div className="card my-2">
+                          <div key={review.id} className="card my-2">
                             <div className="card-body">
                               {review.text}
                               <hr />

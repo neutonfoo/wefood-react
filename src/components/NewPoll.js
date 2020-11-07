@@ -14,6 +14,8 @@ export default function NewPoll() {
   const [pollPrompt, setPollPrompt] = useState("");
   const [location, setLocation] = useState("");
   const [isUsingCurrentLocation, setIsUsingCurrentLocation] = useState(false);
+  const [isCurrentLocationSet, setIsCurrentLocationSet] = useState(false);
+
   const [numberOfResults, setNumberOfResults] = useState(5);
 
   const [selectedCuisine, setSelectedCuisine] = useState("");
@@ -37,10 +39,13 @@ export default function NewPoll() {
           setLocation(
             `${position.coords.latitude},${position.coords.longitude}`
           );
+          setIsCurrentLocationSet(true);
         });
       } else {
-        console.log("Not Available");
+        // console.log("Not Available");
       }
+    } else {
+      setIsCurrentLocationSet(false);
     }
   }, [isUsingCurrentLocation]);
 
@@ -188,7 +193,11 @@ export default function NewPoll() {
             />
           </div>
           <div className="form-group text-center my-2">
-            <button type="submit" className="btn btn-danger">
+            <button
+              type="submit"
+              className="btn btn-danger"
+              disabled={isUsingCurrentLocation && !isCurrentLocationSet}
+            >
               Create Poll
             </button>
           </div>
