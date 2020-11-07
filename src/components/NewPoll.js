@@ -122,7 +122,7 @@ export default function NewPoll() {
             <h5>Number of Results</h5>
             <input
               type="range"
-              class="custom-range"
+              className="custom-range"
               min="1"
               max="10"
               value={numberOfResults}

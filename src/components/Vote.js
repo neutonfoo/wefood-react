@@ -64,7 +64,7 @@ export default function Vote() {
                 .map((business, businessIndex) => (
                   <tr key={business.id}>
                     <td className="text-center">
-                      <span class="badge badge-info">
+                      <span className="badge badge-info">
                         <h3>{businessIndex + 1}</h3>
                       </span>
                     </td>
