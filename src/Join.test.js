@@ -3,7 +3,7 @@ import Join from "./components/Join";
 
 test("Clicking Join without inputting a poll id results in an error", async () => {
   // Create Component
-  const { container, queryByText } = render(<Join />);
+  const { container } = render(<Join />);
 
   const joinButton = container.querySelector("[data-test='joinButton']");
   const errorAlertQuery = "[data-test='errorAlert']";

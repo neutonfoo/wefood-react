@@ -57,10 +57,10 @@ export default function Businesses({ pollId, businesses, readOnly = false }) {
                     <i className="fa fa-star text-warning"></i>
                   )}
                   {businessIndex === 1 && (
-                    <i className="fas fa-dice-two text-primary"></i>
+                    <i className="fas fa-dice-two text-dark"></i>
                   )}
                   {businessIndex === 2 && (
-                    <i className="fas fa-dice-three text-dark"></i>
+                    <i className="fas fa-dice-three text-secondary"></i>
                   )}
                   {businessIndex > 2 && (
                     <span className="badge badge-light border border-dark">

@@ -1,11 +1,5 @@
-import {
-  render,
-  waitForElementToBeRemoved,
-  fireEvent,
-} from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import Businesses from "./components/Businesses";
-
-import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
 
 const polls = [
   [
@@ -173,11 +167,12 @@ const polls = [
   ],
 ];
 
-test("Businesses component hides Vote button if readOnly = true", async () => {
-  const [pollId, poll] = polls[0];
+const [pollId, poll] = polls[0];
+console.log(pollId);
 
+test("Businesses component hides Vote button if readOnly = true", async () => {
   // Create Component
-  const { container, queryByText } = render(
+  const { container } = render(
     <Businesses
       pollId={poll.pollId}
       businesses={poll.businesses}
@@ -189,10 +184,8 @@ test("Businesses component hides Vote button if readOnly = true", async () => {
 });
 
 test("Businesses component displays Vote button if readOnly = false", async () => {
-  const [pollId, poll] = polls[0];
-
   // Create Component
-  const { container, queryByText } = render(
+  const { container } = render(
     <Businesses
       pollId={poll.pollId}
       businesses={poll.businesses}
@@ -204,10 +197,8 @@ test("Businesses component displays Vote button if readOnly = false", async () =
 });
 
 test("Clicking Vote disables Vote button", async () => {
-  const [pollId, poll] = polls[0];
-
   // Create Component
-  const { container, queryByText } = render(
+  const { container } = render(
     <Businesses
       pollId={poll.pollId}
       businesses={poll.businesses}
@@ -223,10 +214,8 @@ test("Clicking Vote disables Vote button", async () => {
 });
 
 test("Clicking Reviews displays the reviews of the selected business", async () => {
-  const [pollId, poll] = polls[0];
-
   // Create Component
-  const { container, queryByText } = render(
+  const { container } = render(
     <Businesses
       pollId={poll.pollId}
       businesses={poll.businesses}

@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import YelpMapMarker from "./YelpMapMarker";
 
-import { googleMapsAPIKey } from "../util/apiAdapter";
+import { getGoogleMapsAPIKey } from "../util/apiAdapter";
 
-export default function YelpMap({ center, businesses, zoom = 11 }) {
+export default function YelpMap({ center, businesses, zoom = 13 }) {
+  const [googleMapsAPIKey, setGoogleMapsAPIKey] = useState();
+
+  useEffect(() => {
+    getGoogleMapsAPIKey().then(response => {
+      setGoogleMapsAPIKey(response.apiKey);
+    });
+  }, []);
+
   return (
     <>
       <div className="text-center">
@@ -36,28 +44,37 @@ export default function YelpMap({ center, businesses, zoom = 11 }) {
               </button>
             </div>
             <div className="modal-body">
-              {/* // Important! Always set the container height explicitly */}
-              <div
-                className="text-center border"
-                style={{ height: "70vh", width: "100%" }}
-              >
-                <GoogleMapReact
-                  bootstrapURLKeys={{
-                    key: googleMapsAPIKey,
-                  }}
-                  defaultCenter={center}
-                  defaultZoom={zoom}
-                >
-                  {businesses.map(business => (
-                    <YelpMapMarker
-                      key={business.id}
-                      name={business.name}
-                      lat={business.lat}
-                      lng={business.lng}
-                    />
-                  ))}
-                </GoogleMapReact>
-              </div>
+              {googleMapsAPIKey && (
+                <>
+                  {/* // Important! Always set the container height explicitly */}
+                  <div
+                    className="text-center border"
+                    style={{ height: "70vh", width: "100%" }}
+                  >
+                    <GoogleMapReact
+                      bootstrapURLKeys={{
+                        key: googleMapsAPIKey,
+                      }}
+                      defaultCenter={center}
+                      defaultZoom={zoom}
+                    >
+                      <YelpMapMarker
+                        isUser={true}
+                        lat={center.lat}
+                        lng={center.lng}
+                      />
+                      {businesses.map(business => (
+                        <YelpMapMarker
+                          key={business.id}
+                          name={business.name}
+                          lat={business.lat}
+                          lng={business.lng}
+                        />
+                      ))}
+                    </GoogleMapReact>
+                  </div>
+                </>
+              )}
             </div>
             <div className="modal-footer">
               <button

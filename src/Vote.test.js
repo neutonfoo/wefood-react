@@ -1,11 +1,7 @@
-import {
-  render,
-  waitForElementToBeRemoved,
-  fireEvent,
-} from "@testing-library/react";
+import { render, waitForElementToBeRemoved } from "@testing-library/react";
 import Vote from "./components/Vote";
 
-import { BrowserRouter, MemoryRouter, Route } from "react-router-dom";
+import { MemoryRouter, Route } from "react-router-dom";
 
 import { createServer } from "miragejs";
 
@@ -175,6 +171,9 @@ const polls = [
   ],
 ];
 
+const [pollId, poll] = polls[0];
+console.log(pollId);
+
 let server;
 beforeEach(() => {
   server = createServer({
@@ -184,7 +183,6 @@ beforeEach(() => {
       this.logging = false;
 
       this.get("/poll/9996", () => {
-        const [pollId, poll] = polls[0];
         return poll;
       });
     },
@@ -204,8 +202,6 @@ test("Voting page shows the correct poll", async () => {
       </Route>
     </MemoryRouter>
   );
-
-  const [pollId, poll] = polls[0];
 
   // Wait for load
   await waitForElementToBeRemoved(() => queryByText("Loading..."));

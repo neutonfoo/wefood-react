@@ -1,8 +1,4 @@
-import {
-  render,
-  waitForElementToBeRemoved,
-  fireEvent,
-} from "@testing-library/react";
+import { render, waitForElementToBeRemoved } from "@testing-library/react";
 import History from "./components/History";
 
 import { BrowserRouter } from "react-router-dom";

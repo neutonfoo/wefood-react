@@ -119,4 +119,16 @@ export function getBusinessReviews(business_id) {
     .catch(error => console.log(error));
 }
 
-export const googleMapsAPIKey = "AIzaSyC-jahAg1ScTgOzzhcg-BdwArYBscSRi-E";
+export function getGoogleMapsAPIKey() {
+  return fetch("/api/googleMapsAPIKey", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(error => console.log(error));
+}
