@@ -49,7 +49,7 @@ export default function YelpMap({ center, businesses, zoom = 13 }) {
                   {/* // Important! Always set the container height explicitly */}
                   <div
                     className="text-center border"
-                    style={{ height: "70vh", width: "100%" }}
+                    style={{ height: "80vh", width: "100%" }}
                   >
                     <GoogleMapReact
                       bootstrapURLKeys={{
@@ -75,15 +75,6 @@ export default function YelpMap({ center, businesses, zoom = 13 }) {
                   </div>
                 </>
               )}
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
             </div>
           </div>
         </div>

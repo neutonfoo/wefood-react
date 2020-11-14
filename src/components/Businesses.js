@@ -150,16 +150,49 @@ export default function Businesses({ pollId, businesses, readOnly = false }) {
             <div className="modal-body">
               {viewingBusinessReviews !== undefined && (
                 <>
-                  Total Reviews: {viewingBusinessReviews.total}
-                  {viewingBusinessReviews.reviews.map(review => (
-                    <div key={review.id} className="card my-2">
-                      <div className="card-body">
-                        {review.text}
-                        <hr />
-                        Rating: {review.rating} / 5
+                  <h5>
+                    Total Reviews{" "}
+                    <span class="badge badge-danger">
+                      {viewingBusinessReviews.total}
+                    </span>
+                  </h5>
+                  {viewingBusinessReviews.reviews
+                    .sort((a, b) => b.rating - a.rating)
+                    .map(review => (
+                      <div
+                        key={review.id}
+                        className={`card my-2 ${
+                          review.rating === 5
+                            ? "bg-light border border-dark"
+                            : ""
+                        }`}
+                      >
+                        <div className="card-body p-2">
+                          <p className="mb-1">
+                            <span
+                              class={`badge badge-pill badge-light border ${
+                                review.rating === 5 ? "border-dark" : ""
+                              }`}
+                            >
+                              {review.time_created}
+                            </span>
+                          </p>
+                          <p className="mb-1 p-2">{review.text}</p>
+                          <p className="mb-0">
+                            {Array.from(Array(review.rating), (e, i) => (
+                              <i
+                                class={`fas fa-star ${
+                                  review.rating === 5 ? "text-warning" : ""
+                                }`}
+                              ></i>
+                            ))}
+                            {Array.from(Array(5 - review.rating), (e, i) => (
+                              <i class="far fa-star"></i>
+                            ))}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                 </>
               )}
             </div>
