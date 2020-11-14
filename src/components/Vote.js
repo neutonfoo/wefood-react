@@ -27,7 +27,9 @@ export default function Vote({ readOnly = false }) {
         setError(poll.error);
       } else {
         setPoll(poll);
-        window.jQuery('[data-toggle="tooltip"]').tooltip();
+        if (window.jQuery) {
+          window.jQuery('[data-toggle="tooltip"]').tooltip();
+        }
 
         const longPolling = setInterval(() => {
           getPoll(pollId).then(response => {

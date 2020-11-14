@@ -182,6 +182,10 @@ beforeEach(() => {
       this.namespace = "api";
       this.logging = false;
 
+      this.get("/googleMapsAPIKey", () => {
+        return { apiKey: 0 };
+      });
+
       this.get("/poll/9996", () => {
         return poll;
       });
