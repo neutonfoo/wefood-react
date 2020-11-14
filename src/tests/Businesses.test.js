@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/react";
-import Businesses from "./components/Businesses";
+import Businesses from "../components/Businesses";
 
 const polls = [
   [

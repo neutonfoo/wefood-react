@@ -54,8 +54,6 @@ export default function History() {
               </th>
               <th className="align-middle text-center" scope="col">
                 Winner
-                <br />
-                <small>(# Votes)</small>
               </th>
             </tr>
           </thead>

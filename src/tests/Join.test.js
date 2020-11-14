@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/react";
-import Join from "./components/Join";
+import Join from "../components/Join";
 
 test("Clicking Join without inputting a poll id results in an error", async () => {
   // Create Component

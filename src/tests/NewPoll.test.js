@@ -3,7 +3,7 @@ import {
   waitForElementToBeRemoved,
   fireEvent,
 } from "@testing-library/react";
-import NewPoll from "./components/NewPoll";
+import NewPoll from "../components/NewPoll";
 
 import { createServer } from "miragejs";
 

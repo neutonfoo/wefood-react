@@ -1,5 +1,5 @@
 import { render, waitForElementToBeRemoved } from "@testing-library/react";
-import Vote from "./components/Vote";
+import Vote from "../components/Vote";
 
 import { MemoryRouter, Route } from "react-router-dom";
 
