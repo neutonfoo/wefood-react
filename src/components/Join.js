@@ -31,19 +31,15 @@ export default function Join() {
       if (poll.error) {
         setError(poll.error);
       } else {
-        history.push(`/vote/${poll.poll_id}`);
+        history.push(`/vote/${poll.pollId}`);
       }
     });
-
-    // if (poll.error) {
-    //   console.log("ASDASD");
-    // }
   }
 
   return (
     <>
       {error && (
-        <div className="alert alert-danger my-2" role="alert">
+        <div className="alert alert-danger my-2" data-test="errorAlert">
           Error: {error}
         </div>
       )}
@@ -60,9 +56,10 @@ export default function Join() {
             placeholder="Poll ID"
             value={pollId}
             onChange={e => handlePollIdChange(e)}
+            data-test="pollIdInput"
           />
         </div>
-        <button type="submit" className="btn btn-info">
+        <button type="submit" className="btn btn-info" data-test="joinButton">
           Join
         </button>
       </form>

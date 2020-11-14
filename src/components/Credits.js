@@ -7,6 +7,17 @@ export default function Credits() {
         WeFood was developed for TrojanHacks Fall 2018 and originally written in
         PHP.
       </p>
+      <p>
+        Client Side Source Code:{" "}
+        <a href="https://github.com/neutonfoo/wefood-react">
+          https://github.com/neutonfoo/wefood-react
+        </a>
+        <br />
+        Server Side Source Code:{" "}
+        <a href="https://github.com/neutonfoo/wefood-server">
+          https://github.com/neutonfoo/wefood-server
+        </a>
+      </p>
     </>
   );
 }

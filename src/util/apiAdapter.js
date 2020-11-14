@@ -1,3 +1,31 @@
+export function getPolls() {
+  return fetch(`/api/poll`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(error => console.log(error));
+}
+
+export function getPoll(pollId) {
+  return fetch(`/api/poll/${pollId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then(response => {
+      return response.json();
+    })
+    .catch(error => console.log(error));
+}
+
 export function createPoll(
   pollPrompt,
   location,
@@ -29,21 +57,8 @@ export function createPoll(
     .catch(error => console.log(error));
 }
 
-export function getPoll(poll_id) {
-  return fetch(`/api/poll/${poll_id}`, {
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  })
-    .then(response => {
-      return response.json();
-    })
-    .catch(error => console.log(error));
-}
-
-export function votePoll(poll_id, business_id) {
-  return fetch(`/api/poll/${poll_id}`, {
+export function votePoll(pollId, business_id) {
+  return fetch(`/api/poll/${pollId}`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -59,13 +74,16 @@ export function votePoll(poll_id, business_id) {
     .catch(error => console.log(error));
 }
 
-export function getPolls() {
-  return fetch(`/api/poll`, {
-    method: "GET",
+export function deletePoll(pollId) {
+  return fetch(`/api/poll/${pollId}`, {
+    method: "DELETE",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      pollId: pollId,
+    }),
   })
     .then(response => {
       return response.json();
@@ -100,3 +118,5 @@ export function getBusinessReviews(business_id) {
     })
     .catch(error => console.log(error));
 }
+
+export const googleMapsAPIKey = "AIzaSyC-jahAg1ScTgOzzhcg-BdwArYBscSRi-E";

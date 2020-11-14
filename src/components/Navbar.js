@@ -17,6 +17,8 @@ export default function Navbar() {
       setActiveNav("Join");
     } else if (location.pathname.startsWith("/vote")) {
       setActiveNav("Join");
+    } else if (location.pathname.startsWith("/view")) {
+      setActiveNav("History");
     }
   }, [location.pathname]);
 

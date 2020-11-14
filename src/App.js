@@ -26,8 +26,11 @@ function App() {
             <Route path="/join" exact>
               <Join />
             </Route>
-            <Route path="/vote/:poll_id" exact>
+            <Route path="/vote/:pollId" exact>
               <Vote />
+            </Route>
+            <Route path="/view/:pollId" exact>
+              <Vote readOnly={true} />
             </Route>
             <Route path="/history" exact>
               <History />
