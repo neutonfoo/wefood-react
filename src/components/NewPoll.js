@@ -28,6 +28,8 @@ export default function NewPoll() {
   useEffect(() => {
     // Get list of cuisines
     getCuisines().then(response => {
+      document.title = "New Poll : WeFood";
+
       setCuisines(response);
       setIsLoadingCuisines(false);
     });

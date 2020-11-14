@@ -8,6 +8,8 @@ export default function History() {
   const [polls, setPolls] = useState([]);
 
   useEffect(() => {
+    document.title = "History : WeFood";
+
     getPolls().then(response => {
       setPolls(
         response.filter(([poll_id, poll]) => poll.businesses.length > 0)

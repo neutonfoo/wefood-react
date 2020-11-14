@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import { votePoll, getBusinessReviews } from "../util/apiAdapter";
 
-import "./Businesses.css";
-
 export default function Businesses({ pollId, businesses, readOnly = false }) {
   const [isVoted, setIsVoted] = useState(false);
 

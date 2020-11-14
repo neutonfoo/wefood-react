@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 export default function Credits() {
+  useEffect(() => {
+    document.title = "Credits : WeFood";
+  }, []);
+
   return (
     <>
       <h1 className="text-center">Credits</h1>

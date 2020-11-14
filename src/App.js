@@ -10,6 +10,7 @@ import Join from "./components/Join";
 import Vote from "./components/Vote";
 import History from "./components/History";
 import Credits from "./components/Credits";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
             </Route>
             <Route path="/credits" exact>
               <Credits />
+            </Route>
+            <Route>
+              <NotFound />
             </Route>
           </Switch>
         </div>

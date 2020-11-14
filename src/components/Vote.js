@@ -7,13 +7,19 @@ import { getPoll } from "../util/apiAdapter";
 import YelpMap from "./YelpMap";
 import Businesses from "./Businesses";
 
-import "./Vote.css";
-
 export default function Vote({ readOnly = false }) {
   let { pollId } = useParams();
   const [error, setError] = useState("");
 
   const [poll, setPoll] = useState();
+
+  useEffect(() => {
+    if (readOnly) {
+      document.title = "View : WeFood";
+    } else {
+      document.title = "Vote : WeFood";
+    }
+  }, [readOnly]);
 
   useEffect(() => {
     return getPoll(pollId).then(poll => {

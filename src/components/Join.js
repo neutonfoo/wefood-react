@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import { getPoll } from "../util/apiAdapter";
@@ -8,6 +8,10 @@ export default function Join() {
 
   const [error, setError] = useState();
   const [pollId, setPollId] = useState("");
+
+  useEffect(() => {
+    document.title = "Join : WeFood";
+  }, []);
 
   function handlePollIdChange(event) {
     const newPollId = event.target.value;
