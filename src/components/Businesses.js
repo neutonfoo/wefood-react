@@ -68,7 +68,7 @@ export default function Businesses({ pollId, businesses, readOnly = false }) {
                   {business.name}
                 </h3>
                 <address
-                  className={`ml-3 pl-3 small border-left
+                  className={`ml-3 mb-2 pl-3 small border-left
                   ${businessIndex === 0 ? "border-warning" : "border-dark"}
                   `}
                 >
