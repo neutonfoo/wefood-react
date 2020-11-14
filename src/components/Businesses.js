@@ -49,7 +49,7 @@ export default function Businesses({ pollId, businesses, readOnly = false }) {
                 src={business.image_url}
                 alt={business.name}
               />
-              <div className="card-body pt-2">
+              <div className="card-body pt-2 mt-1">
                 <h3 className="card-title">
                   {businessIndex === 0 && (
                     <i className="fa fa-star text-warning"></i>
@@ -61,14 +61,14 @@ export default function Businesses({ pollId, businesses, readOnly = false }) {
                     <i className="fas fa-dice-three text-dark"></i>
                   )}
                   {businessIndex > 2 && (
-                    <span className="badge badge-light border border-dark">
+                    <span className="badge badge-light border border-dark align-text-bottom">
                       {businessIndex + 1}
                     </span>
                   )}{" "}
                   {business.name}
                 </h3>
                 <address
-                  className={`ml-3 mb-2 pl-3 small border-left
+                  className={`ml-3 mb-2 pl-3 py-1 small border-left
                   ${businessIndex === 0 ? "border-warning" : "border-dark"}
                   `}
                 >
@@ -114,7 +114,9 @@ export default function Businesses({ pollId, businesses, readOnly = false }) {
                 {!readOnly && (
                   <button
                     type="button"
-                    className="btn btn-primary mr-1"
+                    className={`btn mr-1 ${
+                      isVoted ? "btn-info" : "btn-primary"
+                    }`}
                     onClick={() => handleVote(business.id)}
                     disabled={isVoted}
                     data-test="voteButton"
@@ -123,8 +125,8 @@ export default function Businesses({ pollId, businesses, readOnly = false }) {
                   </button>
                 )}
                 <span
-                  className={`badge p-2 ${
-                    readOnly ? "badge-primary" : "badge-secondary"
+                  className={`badge py-1 px-2 ${
+                    readOnly ? "badge-primary" : "badge-secondary border"
                   }`}
                 >
                   {business.votes} Vote{business.votes === 1 ? "" : "s"}

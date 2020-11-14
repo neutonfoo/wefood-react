@@ -45,9 +45,9 @@ export default function Vote({ readOnly = false }) {
     <>
       {error && (
         <>
-          <h3 className="text-center mt-2">
+          <h2 className="text-center my-2">
             <span className="badge badge-success">{pollId}</span>
-          </h3>
+          </h2>
           <div className="alert alert-danger" role="alert">
             {error}
           </div>
@@ -56,13 +56,13 @@ export default function Vote({ readOnly = false }) {
       {!error && !poll && <p>Loading...</p>}
       {poll && (
         <>
-          <h3 className="text-center my-2" data-test="pollIdHeading">
+          <h2 className="text-center my-2" data-test="pollIdHeading">
             <span className="badge badge-success align-text-bottom">
               {poll.pollId}
             </span>
-          </h3>
+          </h2>
           {poll.poll_prompt !== "" && (
-            <h1 id="poll-prompt" className="text-center mt-4 mb-3 display-4">
+            <h1 id="poll-prompt" className="text-center mt-3 mb-3 display-4">
               {poll.poll_prompt}
             </h1>
           )}
