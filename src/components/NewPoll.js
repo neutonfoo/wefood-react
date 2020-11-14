@@ -117,7 +117,10 @@ export default function NewPoll() {
     <>
       <h1 className="text-center">New Poll</h1>
       <p className="text-center">
-        Select the options below to create a new poll.
+        WeFood is an app that helps groups decide on where to eat!
+      </p>
+      <p className="text-center">
+        Complete the form below to create a new poll.
       </p>
       <form onSubmit={e => handleCreatePoll(e)}>
         <div className="form-group text-center">

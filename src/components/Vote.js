@@ -27,6 +27,7 @@ export default function Vote({ readOnly = false }) {
         setError(poll.error);
       } else {
         setPoll(poll);
+        window.jQuery('[data-toggle="tooltip"]').tooltip();
 
         const longPolling = setInterval(() => {
           getPoll(pollId).then(response => {
@@ -57,7 +58,12 @@ export default function Vote({ readOnly = false }) {
       {poll && (
         <>
           <h2 className="text-center my-2" data-test="pollIdHeading">
-            <span className="badge badge-success align-text-bottom">
+            <span
+              className="badge badge-success align-text-bottom"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Share this poll code with your group!"
+            >
               {poll.pollId}
             </span>
           </h2>
