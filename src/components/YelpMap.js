@@ -4,7 +4,12 @@ import YelpMapMarker from "./YelpMapMarker";
 
 import { getGoogleMapsAPIKey } from "../util/apiAdapter";
 
-export default function YelpMap({ center, businesses, zoom = 13 }) {
+export default function YelpMap({
+  center,
+  businesses,
+  zoom = 13,
+  is_using_current_location = false,
+}) {
   const [googleMapsAPIKey, setGoogleMapsAPIKey] = useState();
 
   useEffect(() => {
@@ -23,7 +28,7 @@ export default function YelpMap({ center, businesses, zoom = 13 }) {
           data-toggle="modal"
           data-target="#mapsModal"
         >
-          <i className="fas fa-map"></i> Google Maps
+          <i className="fas fa-map-marked-alt"></i> Google Maps
         </button>
       </div>
       {/* <!-- Modal --> */}
@@ -31,8 +36,8 @@ export default function YelpMap({ center, businesses, zoom = 13 }) {
         <div className="modal-dialog modal-xl">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                <i className="fas fa-map"></i> Google Maps
+              <h5 className="modal-title">
+                <i className="fas fa-map-marked-alt"></i> Google Maps
               </h5>
               <button
                 type="button"
@@ -58,11 +63,13 @@ export default function YelpMap({ center, businesses, zoom = 13 }) {
                       defaultCenter={center}
                       defaultZoom={zoom}
                     >
-                      <YelpMapMarker
-                        isUser={true}
-                        lat={center.lat}
-                        lng={center.lng}
-                      />
+                      {is_using_current_location && (
+                        <YelpMapMarker
+                          isUser={true}
+                          lat={center.lat}
+                          lng={center.lng}
+                        />
+                      )}
                       {businesses.map(business => (
                         <YelpMapMarker
                           key={business.id}

@@ -1,3 +1,7 @@
+h1#poll-prompt {
+  font-family: "Balsamiq Sans", cursive;
+}
+
 #navbar.bg-light {
   background-color: #ffa500 !important;
 }

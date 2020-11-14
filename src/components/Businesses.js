@@ -58,7 +58,7 @@ export default function Businesses({ pollId, businesses, readOnly = false }) {
                     <i className="fas fa-dice-two text-dark"></i>
                   )}
                   {businessIndex === 2 && (
-                    <i className="fas fa-dice-three text-secondary"></i>
+                    <i className="fas fa-dice-three text-dark"></i>
                   )}
                   {businessIndex > 2 && (
                     <span className="badge badge-light border border-dark">
@@ -123,7 +123,7 @@ export default function Businesses({ pollId, businesses, readOnly = false }) {
                   </button>
                 )}
                 <span
-                  className={`badge p-2 mr-1 ${
+                  className={`badge p-2 ${
                     readOnly ? "badge-primary" : "badge-secondary"
                   }`}
                 >
@@ -152,7 +152,7 @@ export default function Businesses({ pollId, businesses, readOnly = false }) {
                 <>
                   <h5>
                     Total Reviews{" "}
-                    <span class="badge badge-danger">
+                    <span class="badge badge-danger align-text-bottom">
                       {viewingBusinessReviews.total}
                     </span>
                   </h5>

@@ -157,9 +157,6 @@ export default function NewPoll() {
             >
               Use current location
             </label>
-            <p className="mb-1 small text-secondary font-italic">
-              Enables Google Maps
-            </p>
           </div>
           <input
             type="text"
@@ -219,7 +216,9 @@ export default function NewPoll() {
           <div className="form-group text-center my-2">
             <h5>
               Number of Results{" "}
-              <span className="badge badge-warning">{numberOfResults}</span>
+              <span className="badge badge-warning  align-text-bottom">
+                {numberOfResults}
+              </span>
             </h5>
             <input
               type="range"

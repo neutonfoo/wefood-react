@@ -38,7 +38,7 @@ export default function History() {
       {polls.length === 0 && <p className="text-center">No polls yet.</p>}
       {polls.length > 0 && (
         <table className="table table-bordered" data-test="historyTable">
-          <thead className="thead-light">
+          <thead className="thead-dark">
             <tr>
               <th className="align-middle text-center" scope="col">
                 Poll
@@ -66,7 +66,7 @@ export default function History() {
                   <h5>
                     <Link
                       to={`/view/${poll.pollId}`}
-                      className="badge badge-success p-2 mb-1"
+                      className="badge align-text-bottom badge-success p-2 mb-1"
                     >
                       {poll.pollId}
                     </Link>
@@ -80,30 +80,31 @@ export default function History() {
                   </button>
                 </td>
                 <td className="align-middle text-center">
-                  <span className="badge badge-light border">{poll.date}</span>
-                  <br />
-                  <span className="badge badge-light border">{poll.time}</span>
+                  <span className="badge align-text-bottom badge-light border p-2">
+                    {poll.date}
+                    <br />
+                    {poll.time}
+                  </span>
                 </td>
                 <td className="align-middle text-center">
-                  <span className="badge badge-pill badge-warning mx-1 my-0">
+                  <span className="badge align-text-bottom badge-pill badge-warning mx-1 my-0">
                     {poll.cuisine}
                   </span>
                 </td>
                 <td className="align-middle text-center">
                   {poll.is_using_current_location && (
                     <>
-                      <span className="badge badge-primary border">
-                        {parseFloat(poll.location.split(",")[0]).toFixed(5)}
-                      </span>
-                      ,
-                      <br />
-                      <span className="badge badge-primary border">
+                      <span className="badge align-text-bottom badge-primary border p-2">
+                        {parseFloat(poll.location.split(",")[0]).toFixed(5)},
+                        <br />
                         {parseFloat(poll.location.split(",")[1]).toFixed(5)}
                       </span>
                     </>
                   )}
                   {!poll.is_using_current_location && (
-                    <span className="badge badge-primary">{poll.location}</span>
+                    <span className="badge align-text-bottom badge-primary p-2">
+                      {poll.location}
+                    </span>
                   )}
                 </td>
                 <td className="align-middle text-center">
@@ -111,7 +112,7 @@ export default function History() {
                     {poll.businesses.sort((a, b) => b.votes - a.votes)[0].name}
                   </small>
                   <br />
-                  <span className="badge badge-pill badge-secondary">
+                  <span className="badge align-text-bottom badge-pill badge-secondary">
                     {poll.businesses.sort((a, b) => b.votes - a.votes)[0].votes}{" "}
                     Vote
                     {poll.businesses.sort((a, b) => b.votes - a.votes)[0]

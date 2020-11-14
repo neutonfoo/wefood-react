@@ -56,42 +56,43 @@ export default function Vote({ readOnly = false }) {
       {!error && !poll && <p>Loading...</p>}
       {poll && (
         <>
-          <h3 className="text-center mt-2" data-test="pollIdHeading">
-            Poll <span className="badge badge-success">{poll.pollId}</span>
+          <h3 className="text-center my-2" data-test="pollIdHeading">
+            <span className="badge badge-success align-text-bottom">
+              {poll.pollId}
+            </span>
           </h3>
-          <h1 className="text-center">{poll.poll_prompt}</h1>
-          <h4 className="text-center">
-            Cuisine <span className="badge badge-warning">{poll.cuisine}</span>
-          </h4>
-          {poll.is_using_current_location && (
-            <>
-              <h6 className="text-center">
-                Latitude{" "}
-                <span className="badge badge-primary">
-                  {parseFloat(poll.location.split(",")[0]).toFixed(5)}
-                </span>
-              </h6>
-              <h6 className="text-center">
-                Longitude{" "}
-                <span className="badge badge-primary">
+          {poll.poll_prompt !== "" && (
+            <h1 id="poll-prompt" className="text-center mt-4 mb-3 display-4">
+              {poll.poll_prompt}
+            </h1>
+          )}
+          <YelpMap
+            businesses={poll.businesses}
+            center={{
+              lat: poll.lat,
+              lng: poll.lng,
+            }}
+            is_using_current_location={poll.is_using_current_location}
+          />
+          <p className="text-center my-3">
+            <span className="badge badge-warning align-text-bottom">
+              {poll.cuisine}
+            </span>{" "}
+            in{" "}
+            {poll.is_using_current_location && (
+              <>
+                <span className="badge badge-primary align-text-bottom">
+                  {parseFloat(poll.location.split(",")[0]).toFixed(5)},{" "}
                   {parseFloat(poll.location.split(",")[1]).toFixed(5)}
                 </span>
-              </h6>
-              <YelpMap
-                businesses={poll.businesses}
-                center={{
-                  lat: parseFloat(poll.location.split(",")[0]),
-                  lng: parseFloat(poll.location.split(",")[1]),
-                }}
-              />
-            </>
-          )}
-          {!poll.is_using_current_location && (
-            <h6 className="text-center">
-              Location{" "}
-              <span className="badge badge-primary">{poll.location}</span>
-            </h6>
-          )}
+              </>
+            )}
+            {!poll.is_using_current_location && (
+              <span className="badge badge-primary align-text-bottom">
+                {poll.location}
+              </span>
+            )}
+          </p>
           <Businesses
             pollId={poll.pollId}
             businesses={poll.businesses}
