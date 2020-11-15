@@ -44,7 +44,7 @@ afterEach(() => {
 
 test("Cuisines are loaded", async () => {
   // Create Component
-  const { container, queryByText } = render(<NewPoll />);
+  const { container } = render(<NewPoll />);
   // Wait for load
   await waitForElementToBeRemoved(() =>
     container.querySelector("[data-test='spinner']")
@@ -57,7 +57,7 @@ test("Cuisines are loaded", async () => {
 });
 
 test("Toggling Current Location disables location textbox", async () => {
-  const { container, queryByText } = render(<NewPoll />);
+  const { container } = render(<NewPoll />);
   await waitForElementToBeRemoved(() =>
     container.querySelector("[data-test='spinner']")
   );
@@ -73,7 +73,7 @@ test("Toggling Current Location disables location textbox", async () => {
 });
 
 test("Clicking new cuisine changes active cuisine", async () => {
-  const { container, queryByText } = render(<NewPoll />);
+  const { container } = render(<NewPoll />);
   await waitForElementToBeRemoved(() =>
     container.querySelector("[data-test='spinner']")
   );
@@ -93,7 +93,7 @@ test("Clicking new cuisine changes active cuisine", async () => {
 });
 
 test("Clicking new price range changes active price range", async () => {
-  const { container, queryByText } = render(<NewPoll />);
+  const { container } = render(<NewPoll />);
   await waitForElementToBeRemoved(() =>
     container.querySelector("[data-test='spinner']")
   );
@@ -115,7 +115,7 @@ test("Clicking new price range changes active price range", async () => {
 
 test("Default number of results is 5", async () => {
   // Create Component
-  const { container, queryByText } = render(<NewPoll />);
+  const { container } = render(<NewPoll />);
   // Wait for load
   await waitForElementToBeRemoved(() =>
     container.querySelector("[data-test='spinner']")
@@ -128,7 +128,7 @@ test("Default number of results is 5", async () => {
 });
 
 test("Entering a location is required / will cause an error alert to appear", async () => {
-  const { container, queryByText } = render(<NewPoll />);
+  const { container } = render(<NewPoll />);
   await waitForElementToBeRemoved(() =>
     container.querySelector("[data-test='spinner']")
   );

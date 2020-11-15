@@ -199,7 +199,7 @@ afterEach(() => {
 
 test("Voting page shows the correct poll", async () => {
   // Create Component
-  const { container, queryByText } = render(
+  const { container } = render(
     <MemoryRouter initialEntries={[`/vote/9996`]}>
       <Route path="/vote/:pollId" exact>
         <Vote />
