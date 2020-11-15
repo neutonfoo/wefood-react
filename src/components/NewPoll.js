@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 
 import { createPoll, getCuisines } from "../util/apiAdapter";
 
+import Spinner from "./Spinner";
+
 export default function NewPoll() {
   const history = useHistory();
 
@@ -146,7 +148,7 @@ export default function NewPoll() {
               </div>
             </>
           )}
-          <div className="custom-control custom-switch">
+          <div className="custom-control custom-switch mt-0 mb-2">
             <input
               type="checkbox"
               className="custom-control-input"
@@ -178,7 +180,7 @@ export default function NewPoll() {
             role="group"
             data-test="cuisinesContainer"
           >
-            {isLoadingCuisines && <div>Loading...</div>}
+            {isLoadingCuisines && <Spinner>Loading... </Spinner>}
             {!isLoadingCuisines &&
               cuisines.map(({ cuisine, cuisineQuery }) => (
                 <button

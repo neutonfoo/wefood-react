@@ -46,8 +46,9 @@ test("Cuisines are loaded", async () => {
   // Create Component
   const { container, queryByText } = render(<NewPoll />);
   // Wait for load
-  await waitForElementToBeRemoved(() => queryByText("Loading..."));
-
+  await waitForElementToBeRemoved(() =>
+    container.querySelector("[data-test='spinner']")
+  );
   const cuisinesContainer = container.querySelector(
     "[data-test='cuisinesContainer']"
   );
@@ -57,7 +58,9 @@ test("Cuisines are loaded", async () => {
 
 test("Toggling Current Location disables location textbox", async () => {
   const { container, queryByText } = render(<NewPoll />);
-  await waitForElementToBeRemoved(() => queryByText("Loading..."));
+  await waitForElementToBeRemoved(() =>
+    container.querySelector("[data-test='spinner']")
+  );
 
   const useCurrentLocationToggle = container.querySelector(
     "[data-test='useCurrentLocationToggle']"
@@ -71,8 +74,9 @@ test("Toggling Current Location disables location textbox", async () => {
 
 test("Clicking new cuisine changes active cuisine", async () => {
   const { container, queryByText } = render(<NewPoll />);
-  await waitForElementToBeRemoved(() => queryByText("Loading..."));
-
+  await waitForElementToBeRemoved(() =>
+    container.querySelector("[data-test='spinner']")
+  );
   const cuisinesContainer = container.querySelector(
     "[data-test='cuisinesContainer']"
   );
@@ -90,8 +94,9 @@ test("Clicking new cuisine changes active cuisine", async () => {
 
 test("Clicking new price range changes active price range", async () => {
   const { container, queryByText } = render(<NewPoll />);
-  await waitForElementToBeRemoved(() => queryByText("Loading..."));
-
+  await waitForElementToBeRemoved(() =>
+    container.querySelector("[data-test='spinner']")
+  );
   const priceRangeContainer = container.querySelector(
     "[data-test='priceRangeContainer']"
   );
@@ -112,8 +117,9 @@ test("Default number of results is 5", async () => {
   // Create Component
   const { container, queryByText } = render(<NewPoll />);
   // Wait for load
-  await waitForElementToBeRemoved(() => queryByText("Loading..."));
-
+  await waitForElementToBeRemoved(() =>
+    container.querySelector("[data-test='spinner']")
+  );
   const numberOfResultsInput = container.querySelector(
     "[data-test='numberOfResultsInput']"
   );
@@ -123,8 +129,9 @@ test("Default number of results is 5", async () => {
 
 test("Entering a location is required / will cause an error alert to appear", async () => {
   const { container, queryByText } = render(<NewPoll />);
-  await waitForElementToBeRemoved(() => queryByText("Loading..."));
-
+  await waitForElementToBeRemoved(() =>
+    container.querySelector("[data-test='spinner']")
+  );
   const createPollButton = container.querySelector(
     "[data-test='createPollButton']"
   );

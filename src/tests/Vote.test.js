@@ -208,7 +208,9 @@ test("Voting page shows the correct poll", async () => {
   );
 
   // Wait for load
-  await waitForElementToBeRemoved(() => queryByText("Loading..."));
+  await waitForElementToBeRemoved(() =>
+    container.querySelector("[data-test='spinner']")
+  );
   const pollIdHeading = container.querySelector("[data-test='pollIdHeading']");
   expect(pollIdHeading).toHaveTextContent(poll.pollId);
 });

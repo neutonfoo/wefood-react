@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { getPoll } from "../util/apiAdapter";
 
 import YelpMap from "./YelpMap";
+import Spinner from "./Spinner";
 import Businesses from "./Businesses";
 
 export default function Vote({ readOnly = false }) {
@@ -56,7 +57,7 @@ export default function Vote({ readOnly = false }) {
           </div>
         </>
       )}
-      {!error && !poll && <p>Loading...</p>}
+      {!error && !poll && <Spinner>Loading... </Spinner>}
       {poll && (
         <>
           <h2 className="text-center my-2" data-test="pollIdHeading">
