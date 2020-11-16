@@ -239,7 +239,11 @@ export default function NewPoll() {
             <button
               type="submit"
               className="btn btn-danger"
-              disabled={isUsingCurrentLocation && !isCurrentLocationSet}
+              disabled={
+                !isLoadingCuisines &&
+                isUsingCurrentLocation &&
+                !isCurrentLocationSet
+              }
               data-test="createPollButton"
             >
               Create Poll
