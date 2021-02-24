@@ -12,6 +12,12 @@ export default function Credits() {
         Yeung and Neuton Foo for TrojanHacks 2018.
       </p>
       <hr />
+      <p className="text-center">
+        Recreated by Neuton Foo in Fall 2020 for ITP 404 - Advanced Front-End
+        Web Development. More at{" "}
+        <a href="https://neutonfoo.com">https://neutonfoo.com</a>
+      </p>
+      <hr />
       <strong>Project Repository</strong>{" "}
       <a
         href="https://github.com/neutonfoo/itp404-final-project"
@@ -61,6 +67,10 @@ export default function Credits() {
       <hr />
       <p>
         This project is built with{" "}
+        <a href="https://reactjs.org/" rel="noreferrer" target="_blank">
+          React
+        </a>
+        ,{" "}
         <a href="https://getbootstrap.com/" rel="noreferrer" target="_blank">
           Bootstrap
         </a>
